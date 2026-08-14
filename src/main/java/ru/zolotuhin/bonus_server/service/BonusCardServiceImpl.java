@@ -125,7 +125,7 @@ public class BonusCardServiceImpl implements BonusCardService {
 
         BonusOperation originalOperation =
                 bonusOperationRepository
-                        .findByIdAndCardNumber(operationId, card.getCardNumber())
+                        .findByIdAndCard_CardNumber(operationId, card.getCardNumber())
                         .orElseThrow(() -> new OperationNotFoundException(operationId));
 
         if (originalOperation.getType() == OperationType.REVERSAL) {

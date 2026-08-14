@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface BonusOperationRepository
         extends JpaRepository<BonusOperation, Long> {
     Page<BonusOperation> findByCardCardNumber(String cardNumber, Pageable pageable);
-    Optional<BonusOperation> findByIdAndCardNumber(Long operationId, String cardNumber);
+    Optional<BonusOperation> findByIdAndCard_CardNumber(Long operationId, String cardNumber);
     boolean existsByReversalOfId(Long operationId);
 }
