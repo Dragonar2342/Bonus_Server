@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: bonus-server
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5433/bonus_db}
+    username: ${DB_USERNAME:bonus_user}
+    password: ${DB_PASSWORD:bonus_password}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    open-in-view: false
+
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        format_sql: true
+
+    show-sql: false
+
+server:
+  port: ${SERVER_PORT:8080}
