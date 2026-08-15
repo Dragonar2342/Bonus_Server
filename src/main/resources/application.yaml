@@ -19,6 +19,7 @@ spring:
         format_sql: true
 
     show-sql: false
+
   flyway:
     enabled: true
     locations: classpath:db/migration
@@ -28,6 +29,11 @@ spring:
     validate-on-migrate: true
     clean-disabled: true
 
+app:
+  security:
+    admin:
+      username: ${APP_ADMIN_USERNAME:admin}
+      password: ${APP_ADMIN_PASSWORD:admin123}
 
 server:
   port: ${SERVER_PORT:8080}

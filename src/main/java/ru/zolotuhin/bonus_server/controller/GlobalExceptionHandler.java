@@ -15,6 +15,8 @@ import ru.zolotuhin.bonus_server.exception.InsufficientBonusException;
 import ru.zolotuhin.bonus_server.exception.OperationAlreadyReversedException;
 import ru.zolotuhin.bonus_server.exception.OperationNotFoundException;
 import ru.zolotuhin.bonus_server.exception.OperationPersistenceException;
+import ru.zolotuhin.bonus_server.exception.UserAlreadyExistsException;
+import ru.zolotuhin.bonus_server.exception.InvalidCredentialsException;
 
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -80,6 +82,26 @@ public class GlobalExceptionHandler {
         return buildResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR,
                 "Не удалось сохранить бонусную операцию.",
+                request.getRequestURI(),
+                List.of()
+        );
+    }
+
+    @ExceptionHandler(UserAlreadyExistsException.class)
+    public ResponseEntity<ErrorResponse> handleUserAlreadyExists(UserAlreadyExistsException exception, HttpServletRequest request) {
+        return buildResponse(
+                HttpStatus.CONFLICT,
+                exception.getMessage(),
+                request.getRequestURI(),
+                List.of()
+        );
+    }
+
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidCredentials(InvalidCredentialsException exception, HttpServletRequest request) {
+        return buildResponse(
+                HttpStatus.UNAUTHORIZED,
+                exception.getMessage(),
                 request.getRequestURI(),
                 List.of()
         );
